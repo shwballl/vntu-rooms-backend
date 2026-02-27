@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Room } from './rooms.entity';
 import { InjectModel } from '@nestjs/sequelize/dist/common/sequelize.decorators';
 
@@ -13,7 +13,24 @@ export class RoomsService {
     return this.roomModel.findAll();
   }
 
-  async getRoomSchedule(id: string, schedule: string): Promise<Room | null> {
-    return this.roomModel.findOne({ where: { id } });
+  async getRoomSchedule(name: string) {
+    const room = await this.roomModel.findOne({
+      where: { name },
+      attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+    });
+
+    if (!room) {
+      throw new HttpException('Room not found', HttpStatus.NOT_FOUND);
+    }
+
+    return room.get({ plain: true });
+  }
+
+  async getRoomByName(name: string): Promise<Room> {
+    const room = await this.roomModel.findOne({ where: { name } });
+    if (!room) {
+      throw new HttpException('Room not found', HttpStatus.NOT_FOUND);
+    }
+    return room;
   }
 }

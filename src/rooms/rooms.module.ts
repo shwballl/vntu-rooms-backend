@@ -7,6 +7,7 @@ import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module';
 @Module({
   imports: [SequelizeModule.forFeature([Room])],
   providers: [RoomsService],
+  exports: [RoomsService],
   controllers: [RoomsController],
 })
 export class RoomsModule {}

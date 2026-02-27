@@ -12,15 +12,9 @@ export class Room extends Model {
   })
   declare name: string;
 
-  @Column({
-    type: DataType.DATE,
-    allowNull: true,
-  })
-  declare isBookedOn: Date;
+  @Column({ type: DataType.DATE, allowNull: true })
+  declare isBookedOn: Date | null;
 
-  @Column({
-    type: DataType.DATE,
-    allowNull: true,
-  })
-  declare isBookedUntil: Date;
+  @Column({ type: DataType.DATE, allowNull: true })
+  declare isBookedUntil: Date | null;
 }

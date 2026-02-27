@@ -13,11 +13,8 @@ export class RoomsController {
   }
 
   @UseGuards(AuthGuard)
-  @Get(':id/:schedule')
-  async getRoomSchedule(
-    @Param('id') id: string,
-    @Param('schedule') schedule: string,
-  ) {
-    return await this.roomService.getRoomSchedule(id, schedule);
+  @Get(':name')
+  async getRoomSchedule(@Param('name') name: string) {
+    return await this.roomService.getRoomSchedule(name);
   }
 }
