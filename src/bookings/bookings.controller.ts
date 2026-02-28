@@ -22,7 +22,7 @@ export class BookingsController {
     return await this.bookingService.createBooking(user, bookingData);
   }
 
-  @Get()
+  @Get('/my')
   @UseGuards(AuthGuard)
   async getBookings(@CurrentUser() user: User) {
     return await this.bookingService.getBookings(user);

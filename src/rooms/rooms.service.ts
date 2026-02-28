@@ -10,7 +10,7 @@ export class RoomsService {
   ) {}
 
   async getRooms(): Promise<Room[]> {
-    return this.roomModel.findAll();
+    return await this.roomModel.findAll();
   }
 
   async getRoomSchedule(name: string) {

@@ -18,6 +18,7 @@ export class AuthService {
       throw new UnauthorizedException();
     }
     const payload = { id: user.id };
+    console.log('User authenticated:', user);
     return {
       // 💡 Here the JWT secret key that's used for signing the payload
       // is the key that was passsed in the JwtModule
